@@ -11,6 +11,10 @@ db = client.SentenceDatabase
 # create Users collection
 users = db['users']
 
+@app.route('/')
+def hello():
+    return "Hi, there!"
+
 def verify_password(username, password):
     stored_password = users.find({'username': username})[0]['password']
     hashed = bcrypt.hashpw(password.encode('utf8'), stored_password)
